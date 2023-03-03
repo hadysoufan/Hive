@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 
 def getHome(request):
-    return render(request, 'index.html')
+    return render(request, 'home.html')
 
 
 def getHive(request):
