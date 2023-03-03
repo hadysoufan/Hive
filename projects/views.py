@@ -3,8 +3,8 @@ from django.http import HttpResponse
 
 
 def getHome(request):
-    return HttpResponse("Hello, world. You're at the home page.")
+    return render(request, 'index.html')
 
 
-def getUser(request, pk):
-    return HttpResponse('Hello world from user' + ' ' + str(pk))
+def getHive(request):
+    return render(request, 'hive.html')
