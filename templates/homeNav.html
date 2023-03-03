@@ -1,2 +1,28 @@
-<h1>Logo</h1>
-<hr>
+{% load static %}
+
+<!-- Header Section -->
+<header class="header">
+  <a href="#">
+    <img class="logo" src='{% static "img/logo-header.png" %}' alt="Hive logo">
+  </a>
+
+  <!-- Nav header section -->
+  <nav class="main-nav">
+    <ul class="main-nav-list">
+      <li><a href="#home" class="main-nav-link home-btn">Home</a></li>
+      <li><a href="#about" class="main-nav-link">About</a></li>
+      <li><a href="#testimonial" class="main-nav-link">Testimonials</a></li>
+      <li class="main-nav-line"></li>
+      <li>
+        <button class="btn-login">
+          <a href="/frontend/public/login-form.html" target="_blank">Login</a>
+        </button>
+      </li>
+      <li>
+        <button class="btn-login">
+          <a href="/frontend/public/signup-form.html" target="_blank">Sign Up</a>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</header>
