@@ -8,6 +8,9 @@ def getHome(request):
 def getLogin(request):
     return render(request, 'home/login-form.html')
 
+def getSignup(request):
+    return render(request, 'home/signup-form.html')
+
 
 def getHive(request):
     return render(request, 'main/hive.html')
