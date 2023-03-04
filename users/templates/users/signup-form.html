@@ -7,7 +7,7 @@
   <div class="form login">
     <div class="form-content">
       <header class="header-title">Sign up</header>
-      <form method="post" class="signup-form">
+      <form action='{% url "signup" %}' method="post" class="signup-form">
         {% csrf_token %}
 
         <!-- Full name -->
@@ -46,7 +46,7 @@
       </form>
 
       <div class="form-link">
-        <span>Already have an account?<a href='{% url "login-form" %}' class="link signup-link">Login</a></span>
+        <span>Already have an account?<a href='{% url "login" %}' class="link signup-link">Login</a></span>
       </div>
     </div>
 

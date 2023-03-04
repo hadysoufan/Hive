@@ -7,7 +7,7 @@
   <div class="form login">
     <div class="form-content">
       <header class="header-title">Login</header>
-      <form method="post" class="signup-form">
+      <form action='{% url "login" %}' method="post" class="signup-form">
         {% csrf_token %}
         <div class="field input-field">
           <!-- Email input -->
@@ -30,8 +30,7 @@
       </form>
 
       <div class="form-link">
-        <span>Don't have an account? <a href='{% url "signup-form" %}'
-            class="link signup-link">Signup</a></span>
+        <span>Don't have an account? <a href='{% url "signup" %}' class="link signup-link">Signup</a></span>
       </div>
     </div>
 
