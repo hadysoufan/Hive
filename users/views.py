@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from .models import SignupForm
 # Create your views here.
 
 
 def LoginUser(request):
-    
+    page = 'login'
+
     if request.user.is_authenticated:
         return redirect('home')
 
@@ -35,4 +38,14 @@ def LogoutUser(request):
 
 
 def SignupUser(request):
-    return render(request, 'users/signup-form.html')
+    if request.method == 'POST':
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('home')
+    else:
+        form = SignupForm()
+
+    context = {'form': form}
+    return render(request, 'users/signup-form.html', context)

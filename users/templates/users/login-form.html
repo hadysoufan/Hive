@@ -3,14 +3,14 @@
 {% load static %}
 
 <!-- Form section -->
+<!-- Form section -->
 <section class="container-signup forms">
   <div class="form login">
     <div class="form-content">
       <header class="header-title">Login</header>
-      <form action='{% url "login" %}' method="post" class="signup-form">
-        {% csrf_token %}
+      <form action="" method="POST" class="signup-form">
         <div class="field input-field">
-          <!-- Username input -->
+          <!-- Email input -->
           <input type="name" name="username" placeholder="Username" class="input">
         </div>
 
@@ -30,7 +30,8 @@
       </form>
 
       <div class="form-link">
-        <span>Don't have an account? <a href='{% url "signup" %}' class="link signup-link">Signup</a></span>
+        <span>Don't have an account? <a href="{% url 'register' %}"
+            class="link signup-link">Signup</a></span>
       </div>
     </div>
 
@@ -45,6 +46,7 @@
 
   </div>
 </section>
+
 
 
 
