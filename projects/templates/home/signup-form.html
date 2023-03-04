@@ -7,7 +7,8 @@
   <div class="form login">
     <div class="form-content">
       <header class="header-title">Sign up</header>
-      <form action="/api/v1/hive/auth/register" method="post" class="signup-form">
+      <form method="post" class="signup-form">
+        {% csrf_token %}
 
         <!-- Full name -->
         <div class="field input-field">
@@ -45,7 +46,7 @@
       </form>
 
       <div class="form-link">
-        <span>Already have an account?<a href="login-form.html" class="link signup-link">Login</a></span>
+        <span>Already have an account?<a href='{% url "login-form" %}' class="link signup-link">Login</a></span>
       </div>
     </div>
 

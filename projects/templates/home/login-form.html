@@ -7,7 +7,8 @@
   <div class="form login">
     <div class="form-content">
       <header class="header-title">Login</header>
-      <form action="/api/v1/hive/auth/login" method="post" class="signup-form">
+      <form method="post" class="signup-form">
+        {% csrf_token %}
         <div class="field input-field">
           <!-- Email input -->
           <input type="email" name="email" placeholder="Email" class="input">
@@ -29,7 +30,7 @@
       </form>
 
       <div class="form-link">
-        <span>Don't have an account? <a href="/frontend/public/signup-form.html"
+        <span>Don't have an account? <a href='{% url "signup-form" %}'
             class="link signup-link">Signup</a></span>
       </div>
     </div>
@@ -49,4 +50,4 @@
 
 
 
-{% endblock content %}
+{% endblock %}
