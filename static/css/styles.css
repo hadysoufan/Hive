@@ -921,7 +921,7 @@ body {
     rgba(255, 255, 255, 0.6),
     rgba(255, 255, 255, 0.6)
   );
-  background-image: url('/frontend/assets/img/desktop.png');
+  background-image: url('{% static "img/desktop.png" %}');
   background-size: cover;
   background-repeat: no-repeat;
   z-index: -1;

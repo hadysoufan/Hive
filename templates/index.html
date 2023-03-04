@@ -8,23 +8,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hive - Welcome</title>
 
+  <!-- Favicon link -->
+  <link rel="shortcut icon" href='{% static "img/honeycomb.png" %}' type="image/x-icon">
+
   <!-- CSS link -->
   <link rel="stylesheet" href='{% static "css/styles.css" %}'>
   <link rel="stylesheet" href='{% static "css/queries.css" %}'>
+
+  <!-- Font awesome link -->
+  <link rel="shortcut icon" href="images/Icons/home-icon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 
 
 <body>
 
-  {% include 'homeNav.html' %}
+  <!-- loader -->
+  <div class="honeycomb">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
 
-  {% block content %}
+  
+
+  <main>
+
+    <!-- scroll-up-btn -->
+    <button class="scroll-up-btn">
+      ↑
+    </button>
+
+    
+    {% include 'homeNav.html' %}
+
+    {% block content %}
 
 
-  {% endblock content %}
+    {% endblock content %}
 
 
-  {% include 'footer.html' %}
+    {% include 'footer.html' %}
+
+  </main>
+
+  <!-- js link -->
+  <script src='{% static "js/script.js" %}'></script>
 
 </body>
 
