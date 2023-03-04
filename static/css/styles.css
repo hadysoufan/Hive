@@ -1305,7 +1305,7 @@ div.social {
   align-items: center;
   justify-content: center;
   column-gap: 30px;
-  background-image: url('/frontend/assets/img/signup-form-img.png');
+  background-image: url('/static/img/signup-form-img.png');
   background-size: cover;
   background-repeat: no-repeat;
 }
