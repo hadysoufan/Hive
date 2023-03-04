@@ -9,6 +9,7 @@
     <div class="form-content">
       <header class="header-title">Login</header>
       <form action="" method="POST" class="signup-form">
+        {% csrf_token %}
         <div class="field input-field">
           <!-- Email input -->
           <input type="name" name="username" placeholder="Username" class="input">
@@ -16,7 +17,7 @@
 
         <!-- password -->
         <div class="field input-field">
-          <input type="password" name="password" placeholder="Password" class="password">
+          <input type="password" name="password1" placeholder="Password" class="password">
           <i class='bx bx-hide eye-icon'></i>
         </div>
 

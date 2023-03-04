@@ -10,7 +10,7 @@ window.addEventListener('load', function () {
     document.querySelector('.honeycomb').style.display = 'none';
     document.querySelector('main').style.display = 'block';
     document.querySelector('footer').style.display = 'block';
-  }, 3000);
+  }, 500);
 });
 
 ////////////////////////
@@ -151,4 +151,3 @@ function updateTestimonial() {
 }
 
 setInterval(updateTestimonial, 10000);
-

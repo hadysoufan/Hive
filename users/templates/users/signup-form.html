@@ -3,13 +3,14 @@
 {% load static %}
 
 <!-- Signup form -->
+<!-- Signup form -->
 <section class="container-signup forms">
   <div class="form login">
     <div class="form-content">
       <header class="header-title">Sign up</header>
-      <form action="" method="POST" class="signup-form">
+      <form action="{% url 'register' %}" method="POST" class="signup-form">
         {% csrf_token %}
-        {{ form.as_p }}
+
         <!-- Full name -->
         <div class="field input-field">
           <input type="name" name="name" placeholder="Full Name" class="input">
@@ -18,23 +19,24 @@
 
         <!-- Email -->
         <div class="field input-field">
-          <input type="email" name="email" placeholder="someone@test.com" class="input">
+          <input id="formInput#email" type="email" name="email" placeholder="someone@test.com" class="input">
         </div>
 
         <!-- User name -->
         <div class="field input-field">
-          <input type="name" name="username" placeholder="@Username" class="input">
+          <input id="formInput#name" type="name" name="username" placeholder="@Username" class="input">
         </div>
 
-        <!-- password -->
+        <!-- password 1 -->
         <div class="field input-field">
-          <input type="password" name="password" placeholder="Password" class="password input">
+          <input id="formInput#password1" type="password" name="password1" placeholder="Password" class="password input">
           <i class='bx bx-hide eye-icon'></i>
         </div>
 
-        <!-- Repeat password -->
+        <!-- password 2 -->
         <div class="field input-field">
-          <input type="password" name="confirmPassword" placeholder="Confirm Password" class="password input">
+          <input id="formInput#password2" type="password" name="password2" placeholder="Confirm Password"
+            class="password input" name="confirmPassword">
           <i class="bx bx-eye"></i>
           <i class='bx bx-hide eye-icon'></i>
         </div>
@@ -61,6 +63,5 @@
 
   </div>
 </section>
-
 
 {% endblock %}
