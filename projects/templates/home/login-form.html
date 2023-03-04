@@ -1,0 +1,52 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+
+<!-- Form section -->
+<section class="container-signup forms">
+  <div class="form login">
+    <div class="form-content">
+      <header class="header-title">Login</header>
+      <form action="/api/v1/hive/auth/login" method="post" class="signup-form">
+        <div class="field input-field">
+          <!-- Email input -->
+          <input type="email" name="email" placeholder="Email" class="input">
+        </div>
+
+        <!-- password -->
+        <div class="field input-field">
+          <input type="password" name="password" placeholder="Password" class="password">
+          <i class='bx bx-hide eye-icon'></i>
+        </div>
+
+        <div class="form-link">
+          <a href="#" class="forgot-pass">Forgot password?</a>
+        </div>
+
+        <div class="field button-field">
+          <button>Login</button>
+        </div>
+      </form>
+
+      <div class="form-link">
+        <span>Don't have an account? <a href="/frontend/public/signup-form.html"
+            class="link signup-link">Signup</a></span>
+      </div>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="media-options">
+      <a href="#" class="field google">
+        <i class="fab fa-google google-icon"></i>
+        <span class="icon-text google-text">Login with Google</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+{% endblock content %}

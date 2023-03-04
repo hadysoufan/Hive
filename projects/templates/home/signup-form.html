@@ -1,0 +1,67 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+
+<!-- Signup form -->
+<section class="container-signup forms">
+  <div class="form login">
+    <div class="form-content">
+      <header class="header-title">Sign up</header>
+      <form action="/api/v1/hive/auth/register" method="post" class="signup-form">
+
+        <!-- Full name -->
+        <div class="field input-field">
+          <input type="name" name="name" placeholder="Full Name" class="input">
+        </div>
+
+
+        <!-- Email -->
+        <div class="field input-field">
+          <input type="email" name="email" placeholder="someone@test.com" class="input">
+        </div>
+
+        <!-- User name -->
+        <div class="field input-field">
+          <input type="name" name="username" placeholder="@Username" class="input">
+        </div>
+
+        <!-- password -->
+        <div class="field input-field">
+          <input type="password" name="password" placeholder="Password" class="password input">
+          <i class='bx bx-hide eye-icon'></i>
+        </div>
+
+        <!-- Repeat password -->
+        <div class="field input-field">
+          <input type="password" name="confirmPassword" placeholder="Confirm Password" class="password input">
+          <i class="bx bx-eye"></i>
+          <i class='bx bx-hide eye-icon'></i>
+        </div>
+
+        <!-- Signup button -->
+        <div class="field button-field">
+          <button type="submit">Signup</button>
+        </div>
+      </form>
+
+      <div class="form-link">
+        <span>Already have an account?<a href="login-form.html" class="link signup-link">Login</a></span>
+      </div>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="media-options">
+      <a href="#" class="field google">
+        <i class="fab fa-google google-icon"></i>
+        <span class="icon-text google-text">Login with Google</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+{% endblock content %}
