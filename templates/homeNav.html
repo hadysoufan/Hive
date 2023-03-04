@@ -14,16 +14,26 @@
       <li><a href="#about" class="main-nav-link">About</a></li>
       <li><a href="#testimonial" class="main-nav-link">Testimonials</a></li>
       <li class="main-nav-line"></li>
+
+      {% if request.user.is_authenticated %}
+      <li>
+        <button class="btn-login">
+          <a href='{% url "logout" %}' target="_blank">Logout</a>
+        </button>
+      </li>
+      {% else %}
       <li>
         <button class="btn-login">
           <a href='{% url "login" %}' target="_blank">Login</a>
         </button>
       </li>
+
       <li>
         <button class="btn-login">
           <a href='{% url "signup" %}' target="_blank">Sign Up</a>
         </button>
       </li>
+      {% endif %}
     </ul>
   </nav>
 </header>
