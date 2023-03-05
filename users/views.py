@@ -9,11 +9,18 @@ def LoginUser(request):
     page = 'login'
 
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('hive')
 
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        if not username:
+            messages.error(request, 'Please enter your username')
+            return redirect('login')
+        if not password:
+            messages.error(request, 'Please enter your password')
+            return redirect('login')
 
         try:
             user = User.objects.get(username=username)
@@ -25,12 +32,14 @@ def LoginUser(request):
 
         if user is not None:
             login(request, user)
-            return redirect('home')
+            return redirect('hive')
         else:
-            messages.error(request, 'Username or password is incorrect')
+            error_msg = 'Username or password is incorrect'
+            print(error_msg)
             return redirect('login')
 
     return render(request, 'users/login-form.html')
+
 
 
 def LogoutUser(request):
@@ -54,12 +63,12 @@ def SignupUser(request):
 
             login(request, user)
 
-            print('New user created: ', user.username)  # added print statement
+            print('New user created: ', user.username)
 
-            return redirect('home')
+            return redirect('hive')
         else:
             messages.error(request, 'An error has occurred. Please try again.')
-            print('Form is invalid: ', form.errors)  # added print statement
+            print('Form is invalid: ', form.errors)
 
     context = {'page': page, 'form': form}
 
