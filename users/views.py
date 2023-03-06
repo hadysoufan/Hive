@@ -28,18 +28,19 @@ def LoginUser(request):
             messages.error(request, 'Username does not exist')
             return redirect('login')
 
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(username=username, password=password)
 
         if user is not None:
             login(request, user)
+            print('Login successful')
             return redirect('hive')
         else:
             error_msg = 'Username or password is incorrect'
+            messages.error(request, error_msg)
             print(error_msg)
             return redirect('login')
 
     return render(request, 'users/login-form.html')
-
 
 
 def LogoutUser(request):
