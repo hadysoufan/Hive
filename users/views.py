@@ -80,20 +80,13 @@ def SignupUser(request):
                 user.save()
 
                 messages.success(request, 'User account was created')
-
                 login(request, user)
-
-                print('New user created: ', user.username)
-
                 return redirect('hive')
             else:
                 messages.error(
                     request, 'Passwords do not match. Please try again.')
-                print('Passwords do not match')
         else:
             messages.error(request, 'An error has occurred. Please try again.')
-            print('Form is invalid: ', form.errors)
 
     context = {'page': page, 'form': form}
-
     return render(request, 'users/signup-form.html', context)
