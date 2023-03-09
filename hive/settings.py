@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'projects.apps.ProjectsConfig',
     'users.apps.UsersConfig',
     'hivePlatform.apps.HiveplatformConfig',
+    'django_messages',
 ]
 
 MIDDLEWARE = [
