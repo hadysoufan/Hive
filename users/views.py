@@ -1,9 +1,13 @@
+from .models import Profile
 from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import CustomUserCreationForm
+
+from .forms import CustomUserCreationForm
+from .models import Profile
 
 
 def LoginUser(request):
@@ -64,30 +68,34 @@ def SignupUser(request):
 
             # Check if username already exists
             if User.objects.filter(username=username).exists():
-                form.add_error(
-                    'username', 'Username is already taken. Please choose a different username.')
+                messages.error(
+                    request, 'Username is already taken. Please choose a different username.')
+                return redirect('register')
+
             # Check if email already exists
             if User.objects.filter(email=email).exists():
-                form.add_error(
-                    'email', 'An account with this email already exists. Please use a different email.')
-            if password1 != password2:
-                form.add_error(
-                    'password2', 'Passwords do not match. Please try again.')
-            if form.errors:
-                error_messages = ''
-                for field, errors in form.errors.items():
-                    for error in errors:
-                        error_messages += f'{field.capitalize()}: {error}<br>'
                 messages.error(
-                    request, f'An error has occurred. Please fix the following errors:<br>{error_messages}')
-            else:
+                    request, 'An account with this email already exists. Please use a different email.')
+                return redirect('register')
+
+            if password1 == password2:
                 user = form.save(commit=False)
                 user.username = username
                 user.email = email
                 user.save()
+
+                # Create a Profile instance for the newly registered user
+                profile = Profile(user=user, _id=user.id)
+                profile.save()
+
                 messages.success(request, 'User account was created')
                 login(request, user)
-                print('New user created: ', user.username)
                 return redirect('hive')
+            else:
+                messages.error(
+                    request, 'Passwords do not match. Please try again.')
+        else:
+            messages.error(request, 'An error has occurred. Please try again.')
+
     context = {'page': page, 'form': form}
     return render(request, 'users/signup-form.html', context)
