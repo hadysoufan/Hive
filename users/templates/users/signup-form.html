@@ -12,6 +12,13 @@
       <form action="{% url 'register' %}" method="POST" class="signup-form">
         {% csrf_token %}
 
+
+        {% for message in messages %}
+        <h5>{{ message }}</h5>
+        {% endfor %}
+
+
+
         <!-- Full name -->
         <div class="field input-field">
           <input type="name" name="name" placeholder="Full Name" class="input">
