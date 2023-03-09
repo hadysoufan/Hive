@@ -56,17 +56,24 @@ def SignupUser(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.username = user.username.lower()
-            user.save()
+            password1 = form.cleaned_data.get('password1')
+            password2 = form.cleaned_data.get('password2')
+            if password1 == password2:
+                user = form.save(commit=False)
+                user.username = user.username.lower()
+                user.save()
 
-            messages.success(request, 'User account was created')
+                messages.success(request, 'User account was created')
 
-            login(request, user)
+                login(request, user)
 
-            print('New user created: ', user.username)
+                print('New user created: ', user.username)
 
-            return redirect('hive')
+                return redirect('hive')
+            else:
+                messages.error(
+                    request, 'Passwords do not match. Please try again.')
+                print('Passwords do not match')
         else:
             messages.error(request, 'An error has occurred. Please try again.')
             print('Form is invalid: ', form.errors)
