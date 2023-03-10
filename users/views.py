@@ -1,12 +1,11 @@
 from .models import Profile
 from django.contrib.auth import login
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .forms import CustomUserCreationForm
-
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, ProfileForm
 from .models import Profile
 
 
@@ -68,10 +67,24 @@ def SignupUser(request):
             messages.success(request, 'User account was created')
             login(request, user)
             return redirect('hive')
-        
+
         else:
             for error in form.errors.values():
                 messages.error(request, error)
 
     context = {'page': page, 'form': form}
     return render(request, 'users/signup-form.html', context)
+
+
+def editAccount(request):
+    profile = get_object_or_404(Profile, user=request.user)
+    form = ProfileForm(instance=profile)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('hive')
+
+    context = {'form': form}
+    return render(request, 'users/profile-form.html', context)
