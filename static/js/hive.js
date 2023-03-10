@@ -52,11 +52,3 @@ const searchMessage = () => {
 };
 
 messageSearch.addEventListener('keyup', searchMessage);
-
-document.getElementById('create-post').addEventListener('focus', function () {
-  this.parentElement.classList.add('active');
-});
-
-document.getElementById('create-post').addEventListener('blur', function () {
-  this.parentElement.classList.remove('active');
-});
