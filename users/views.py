@@ -61,42 +61,17 @@ def SignupUser(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get('username').lower()
-            email = form.cleaned_data.get('email').lower()
-            password1 = form.cleaned_data.get('password1')
-            password2 = form.cleaned_data.get('password2')
+            user = form.save(commit=False)
+            user.username = form.cleaned_data.get('username').lower()
+            user.save()
 
-            # Check if username already exists
-            if User.objects.filter(username=username).exists():
-                messages.error(
-                    request, 'Username is already taken. Please choose a different username.')
-                return redirect('register')
-
-            # Check if email already exists
-            if User.objects.filter(email=email).exists():
-                messages.error(
-                    request, 'An account with this email already exists. Please use a different email.')
-                return redirect('register')
-
-            if password1 == password2:
-                user = form.save(commit=False)
-                user.username = username
-                user.email = email
-                user.save()
-
-                # Create a Profile instance for the newly registered user
-                profile = Profile(user=user, _id=user.id)
-                profile.save()
-
-                messages.success(request, 'User account was created')
-                login(request, user)
-                return redirect('hive')
-            else:
-                messages.error(
-                    request, 'Passwords do not match. Please try again.')
+            messages.success(request, 'User account was created')
+            login(request, user)
+            return redirect('hive')
+        
         else:
-            messages.error(request, 'An error has occurred. Please try again.')
+            for error in form.errors.values():
+                messages.error(request, error)
 
     context = {'page': page, 'form': form}
     return render(request, 'users/signup-form.html', context)
-
