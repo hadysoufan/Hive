@@ -86,5 +86,6 @@ def editAccount(request):
             form.save()
             return redirect('hive')
 
-    context = {'form': form}
+    context = {'form': form,
+               'profile_image': profile.profileImg.url if profile.profileImg else None}
     return render(request, 'users/profile-form.html', context)

@@ -12,8 +12,13 @@
       <div class="create">
         <label class="btn btn-primary" for="create-post">Create</label>
         <div class="profile-picture">
-          <a href="{% url 'profile' %}"><img src='{% static "img/profile-1.jpg" %}'
-              alt=""></a>
+          <a href="{% url 'profile' %}">
+            {% if profile_image %}
+            <img src="{{ profile_image.url }}" alt="">
+            {% else %}
+            <img src="{% static 'img/default.png' %}" alt="">
+            {% endif %}
+          </a>
         </div>
       </div>
     </div>
