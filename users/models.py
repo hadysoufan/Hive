@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 import uuid
-
+from django.db.models.signals import post_save
 
 # Create your models here.
 
@@ -22,3 +22,12 @@ class Profile(models.Model):
 
     def __str__(self):
         return str(self.user.username)
+
+
+def profileUpdated(sender, instance, created, **kwargs):
+    print('profile saved')
+    print('Instance:', instance)
+    print('Created:', created)
+
+
+post_save.connect(profileUpdated, sender=Profile)
