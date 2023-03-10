@@ -36,7 +36,8 @@ def createProfile(sender, instance, created, **kwargs):
 
 # @receiver(post_delete, sender=Profile)
 def deleteProfile(sender, instance, **kwargs):
-    print('user deleted')
+    user = instance.user
+    user.delete()
 
 
 post_save.connect(createProfile, sender=User)
