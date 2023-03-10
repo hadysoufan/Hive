@@ -602,6 +602,8 @@ main .container .right {
   margin: 0;
 }
 
+/*  */
+
 
 /* ///////////////////////////////////// */
 /* media queries */
@@ -676,6 +678,7 @@ main .container .right {
   .middle .create-post {
     width: 80%;
     margin-left: 0.5rem;
+    position: relative;
   }
 
   .middle .feeds .feed {

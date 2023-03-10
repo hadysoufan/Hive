@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+import uuid
 from django.contrib.auth import get_user_model
 
 
@@ -8,12 +10,13 @@ User = get_user_model()
 
 
 class Profile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    _id = models.IntegerField()
+    _id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    name = models.CharField(max_length=200, blank=True, null=True)
     bio = models.TextField(blank=True)
     profileImg = models.ImageField(
-        upload_to='profileImg', default='default.png')
+        upload_to='profiles/', default='profiles/default.png', null=True, blank=True)
     location = models.CharField(max_length=255, blank=True)
 
     def __str__(self):
-        return self.user.username
+        return str(self.user.username)

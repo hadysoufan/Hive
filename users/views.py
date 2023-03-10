@@ -99,3 +99,4 @@ def SignupUser(request):
 
     context = {'page': page, 'form': form}
     return render(request, 'users/signup-form.html', context)
+

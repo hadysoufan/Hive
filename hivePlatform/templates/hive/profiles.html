@@ -18,7 +18,7 @@
 
         <h1 class="profile-user-name">janedoe_</h1>
 
-        <button class="btn profile-edit-btn">Edit Profile</button>
+        <a href="{% url 'edit-profile' %}"><button class="btn profile-edit-btn">Edit Profile</button></a>
 
         <button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog"
             aria-hidden="true"></i></button>
@@ -72,12 +72,12 @@
 
         </div>
 
-    </div>
-    <!-- End of gallery -->
+      </div>
+      <!-- End of gallery -->
 
-  </div>
-  <!-- End of container -->
+    </div>
+    <!-- End of container -->
 
 </main>
 
-{% endblock content %}
+{% endblock %}
