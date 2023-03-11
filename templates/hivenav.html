@@ -10,11 +10,11 @@
         <input type="search" placeholder="search here">
       </div>
       <div class="create">
-        <label class="btn btn-primary" for="create-post">Create</label>
+        <label class="btn btn-primary show-modal" for="create-post">Create</label>
         <div class="profile-picture">
           <a href="{% url 'profile' %}">
-            {% if profile_image %}
-            <img src="{{ profile_image.url }}" alt="">
+            {% if user.profileImg %}
+            <img src="{{ profile.profileImg.url }}" alt="">
             {% else %}
             <img src="{% static 'img/default.png' %}" alt="">
             {% endif %}
