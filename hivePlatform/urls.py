@@ -1,8 +1,11 @@
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
     path('', views.getHive, name='hive'),
     path('edit-profile/', views.getSettings, name='edit-profile'),
     path('profile/', views.getUserProfile, name='profile')
-]
+] + static(settings.MEDIA_URL,
+           document_root=settings.MEDIA_ROOT)
