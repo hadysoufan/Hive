@@ -6,7 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import CustomUserCreationForm, ProfileForm
-from .models import Profile
+from .models import Profile, Post
+from .signals import profile_updated
 
 
 def LoginUser(request):
@@ -86,6 +87,21 @@ def editAccount(request):
             form.save()
             return redirect('hive')
 
-    context = {'form': form,
-               'profile_image': profile.profileImg.url if profile.profileImg else None}
+    context = {'form': form}
     return render(request, 'users/profile-form.html', context)
+
+
+def upload(request):
+
+    if request.method == 'POST':
+        user = request.user.username
+        image = request.FILES.get('image_upload')
+        caption = request.POST.get['caption']
+
+        new_post = Post.objects.create(user=user, image=image, caption=caption)
+        new_post.save()
+
+        return redirect('hive')
+
+    else:
+        return redirect('hive')

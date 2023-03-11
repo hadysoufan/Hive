@@ -9,8 +9,7 @@ urlpatterns = [
     path('logout/', views.LogoutUser, name='logout'),
     path('register/', views.SignupUser, name='register'),
     path('edit-account/', views.editAccount, name='edit-account'),
-    
-]
+    path('upload/', views.upload, name='upload'),
 
-urlpatterns = urlpatterns + \
-    static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL,
+           document_root=settings.MEDIA_ROOT)   
