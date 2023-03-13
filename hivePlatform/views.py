@@ -11,5 +11,4 @@ def getSettings(request):
     return render(request, 'hive/settings.html')
 
 
-def getUserProfile(request):
-    return render(request, 'hive/profiles.html')
+
