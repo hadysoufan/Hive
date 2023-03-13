@@ -35,12 +35,12 @@
     <!-- Left screen side -->
     <div class="left">
       <!-- Profile section -->
-      <a href="" class="profile">
+      <a href="{% url 'profile' %}" class="profile">
         <div class="profile-picture">
-          {% if profile_image %}
-          <img src="{{ user.profile.profileImg.url }}" alt="">
+          {% if user.profile.profileImg %}
+          <img src="{{ user.profile.profileImg.url }}" alt="User Profile Img">
           {% else %}
-          <img src="{% static 'img/default.png' %}" alt="">
+          <img src="{% static 'img/default.png' %}" alt="Default Img">
           {% endif %}
         </div>
         <div class="handle">
@@ -237,7 +237,11 @@
       <!-- create post section -->
       <form action="" class="create-post">
         <div class="profile-picture">
-          <img src="{% static 'img/profile-1.jpg' %}" alt="">
+          {% if user.profile.profileImg %}
+          <img src="{{ user.profile.profileImg.url }}" alt="User Profile Img">
+          {% else %}
+          <img src="{% static 'img/default.png' %}" alt="Default Img">
+          {% endif %}
         </div>
         <input type="text" name="image_upload" placeholder="create a post" id="create-post">
         <input type="submit" value="Post" class="btn btn-primary">
