@@ -13,10 +13,10 @@
         <label class="btn btn-primary show-modal" for="create-post">Create</label>
         <div class="profile-picture">
           <a href="{% url 'profile' %}">
-            {% if user.profileImg %}
-            <img src="{{ profile.profileImg.url }}" alt="">
+            {% if user.profile.profileImg %}
+            <img src="{{ user.profile.profileImg.url }}" alt="User Profile Img">
             {% else %}
-            <img src="{% static 'img/default.png' %}" alt="">
+            <img src="{% static 'img/default.png' %}" alt="Default Img">
             {% endif %}
           </a>
         </div>
