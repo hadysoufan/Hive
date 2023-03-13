@@ -10,6 +10,10 @@ from .models import Profile, Post
 from .signals import profile_updated
 
 
+def getUserProfile(request):
+    return render(request, 'users/profiles.html')
+
+
 def LoginUser(request):
     page = 'login'
 
@@ -78,7 +82,7 @@ def SignupUser(request):
 
 
 def editAccount(request):
-    profile = get_object_or_404(Profile, user=request.user)
+    profile = request.user.profile
     form = ProfileForm(instance=profile)
 
     if request.method == 'POST':
@@ -87,7 +91,8 @@ def editAccount(request):
             form.save()
             return redirect('hive')
 
-    context = {'form': form}
+    context = {'form': form, 'profile': profile}
+    print(f'context: {context}')
     return render(request, 'users/profile-form.html', context)
 
 
