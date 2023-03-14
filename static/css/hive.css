@@ -818,7 +818,7 @@ fieldset[disabled] .form-control {
 }
 
 /* Upload Demo */
-/* 
+
 .hidden {
   display: none;
 }
@@ -1012,4 +1012,4 @@ div {
   background: #454cad;
   border-color: #454cad;
   cursor: pointer;
-} */
+}
