@@ -33,4 +33,4 @@ class Post(models.Model):
     numOfLikes = models.IntegerField(default=0)
 
     def __str__(self):
-        return str(self.user)
+        return f'User: {self.user}, Image: {self.image}, Caption: {self.caption}'
