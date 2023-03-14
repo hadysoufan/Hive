@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import CustomUserCreationForm, ProfileForm
 from .models import Profile, Post
-from .signals import profile_updated
+from django.http import HttpResponseBadRequest
 
 
 def getUserProfile(request):
@@ -97,16 +97,28 @@ def editAccount(request):
 
 
 def upload(request):
-
     if request.method == 'POST':
         user = request.user.username
         image = request.FILES.get('image_upload')
-        caption = request.POST.get['caption']
+        caption = request.POST.get('caption')
 
-        new_post = Post.objects.create(user=user, image=image, caption=caption)
-        new_post.save()
+        print('User:', user)
+        print('Image:', image)
+        print('Caption:', caption)
 
-        return redirect('hive')
+        # print request object
+        print('Request:', request)
+        print('Request body:', request.body)
+
+        try:
+            new_post = Post.objects.create(
+                user=user, image=image, caption=caption)
+            new_post.save()
+            print('New post created:', new_post)
+            return redirect('hive')
+        except Exception as e:
+            print('Error:', e)
+            return HttpResponseBadRequest('Bad request: ' + str(e))
 
     else:
         return redirect('hive')
